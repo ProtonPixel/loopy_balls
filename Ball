@@ -1,0 +1,26 @@
+class Ball {
+  PVector position, infrastructure;
+  float rad;
+
+  Ball() {
+    position = new PVector();
+    infrastructure = new PVector(random(1000), random(1000));
+    rad = random(.1, .2);
+  }
+  
+  void run() {
+    move();
+    show();
+  }
+
+  void show() {
+    noStroke();
+    fill(50, 10, 10);
+    ellipse(position.x, position.y, 4, 4);
+  }
+
+  void move() {
+    position.x = map((float)noire.eval(infrastructure.x, 0, rad * cos(TWO_PI * frameCount / period), rad * sin(TWO_PI * frameCount / period)), -1, 1, -.5 * width,  1.5 * width);
+    position.y = map((float)noire.eval(infrastructure.y, 0, rad * cos(TWO_PI * frameCount / period), rad * sin(TWO_PI * frameCount / period)), -1, 1, -.5 * height, 1.5 * height);
+  }
+};
